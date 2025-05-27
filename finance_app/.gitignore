@@ -1,0 +1,22 @@
+# Build artifacts
+bin/
+obj/
+
+# VS Code settings
+.vscode/
+
+# User-specific files
+*.user
+*.suo
+
+# Dotnet tools
+*.pdb
+
+# ASP.NET secrets
+secrets.json
+
+# Logs
+*.log
+
+# IDEs
+.vs/
