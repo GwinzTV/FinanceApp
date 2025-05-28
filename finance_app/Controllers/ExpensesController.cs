@@ -1,6 +1,7 @@
 using finance_app.Data;
 using finance_app.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace finance_app.Controllers
 {
@@ -11,9 +12,9 @@ namespace finance_app.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var expenses = _context.Expenses.ToList();
+            var expenses = await _context.Expenses.ToListAsync();
             return View(expenses);
         }
 
@@ -22,12 +23,12 @@ namespace finance_app.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Expense expense)
+        public async Task<IActionResult> Create(Expense expense)
         {
             if (ModelState.IsValid)
             {
                 _context.Expenses.Add(expense);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(expense);
